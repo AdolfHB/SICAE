@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+    <insert id="insertUser" parameterType="map">
+        INSERT INTO usuario ("nombre","apellidoPaterno","apellidoMaterno",
+        "email","telefono","username","password","estatus","idRol","tiempoCreacion")
+        VALUES (#{nombre},#{apellidoPaterno},#{apellidoMaterno},#{email},
+        #{telefono},#{username},#{password},CAST(#{estatus} AS BIT),#{idRol},CURRENT_TIMESTAMP)
+    </insert>
+
+
+    <update id="updateUser" parameterType="map">
+
+        UPDATE usuario SET
+
+        nombre = #{nombre},
+        apellidoPaterno = #{apellidoPaterno},
+        apellidoMaterno = #{apellidoMaterno},
+        email = #{email}
+        telefono = #{telefono}
+        idRol = #{idRol}
+        tiempoActualizacion = CURRENT_TIMESTAMP
+        WHERE idUsuario = #{idUsuario}
+    </update>
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ParkingMapper">
+
+    <select id="getEspaciosLibres" resultType="fei.parkingservice.model.pojos.Espacio">
+        SELECT idEspacio, claveEspacio, tipo, ocupado, estatus
+        FROM espacioestacionamiento
+        WHERE ocupado = 0 AND estatus = 1
+    </select>
+
+    <select id="getEspacioById" parameterType="int" resultType="fei.parkingservice.model.pojos.Espacio">
+        SELECT idEspacio, claveEspacio, tipo, ocupado, estatus
+        FROM espacioestacionamiento
+        WHERE idEspacio = #{idEspacio}
+    </select>
+    
+    <update id="ocuparEspacio" parameterType="int">
+        UPDATE espacioestacionamiento
+        SET ocupado = 1
+        WHERE idEspacio = #{idEspacio}
+    </update>
+    
+    <update id="liberarEspacio" parameterType="int">
+        UPDATE espacioestacionamiento
+        SET ocupado = 0
+        WHERE idEspacio = #{idEspacio}
+    </update>
+    
+    <select id="tieneEntradaActiva" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM movimiento
+        WHERE idVehiculo = #{idVehiculo}
+          AND tiempoSalida IS NULL
+    </select>
+    
+    <select id="countVehiculosActivosByListaIds" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM movimiento
+        WHERE idVehiculo IN
+        <foreach collection="idsVehiculos" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        AND tiempoSalida IS NULL
+    </select>
+    
+    <insert id="insertMovimiento" parameterType="map" useGeneratedKeys="true" keyProperty="idMovimiento">
+        INSERT INTO movimiento (
+            idVehiculo, tarifaHora, idEspacio, tiempoEntrada, tiempoCreacion
+        ) VALUES (
+            #{idVehiculo}, #{tarifaHora}, #{idEspacio}, #{tiempoEntrada}, #{tiempoCreacion}
+        )
+    </insert>
+    
+    <select id="getMovimientoActivo" parameterType="int" resultType="fei.parkingservice.model.pojos.Movimiento">
+        SELECT idMovimiento, idVehiculo, tiempoEntrada, tarifaHora, idEspacio
+        FROM movimiento
+        WHERE idVehiculo = #{idVehiculo}
+          AND tiempoSalida IS NULL
+        ORDER BY idMovimiento DESC
+        LIMIT 1
+    </select>
+    
+    <update id="updateMovimientoSalida" parameterType="map">
+        UPDATE movimiento SET
+            tiempoSalida = #{tiempoSalida},
+            minutosEstacionado = #{minutosEstacionado},
+            horasCobradas = #{horasCobradas},
+            costoTotal = #{costoTotal},
+            tiempoActualizacion = #{tiempoActualizacion}
+        WHERE idMovimiento = #{idMovimiento}
+    </update>
+    
+</mapper>
