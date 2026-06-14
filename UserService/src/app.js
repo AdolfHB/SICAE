@@ -8,7 +8,6 @@ const authRoutes = require("./routes/user.routes");
 const app = express();
 
 // Middleware que permite al servidor entender datos en formato JSON
-// (por ejemplo, cuando envias datos desde Postman o frontend)
 app.use(express.json());
 
 app.use("/sicae/user/api",authRoutes);

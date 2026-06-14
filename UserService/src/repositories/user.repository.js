@@ -8,13 +8,13 @@ exports.findUser = async (filters) => {
 
     // Búsqueda por username
     if (filters.username) {
-        conditions.push(`username = $${params.length + 1}`);
+        conditions.push(`"username" = $${params.length + 1}`);
         params.push(filters.username);
     }
 
     // Búsqueda por email
     if (filters.email) {
-        conditions.push(`email = $${params.length + 1}`);
+        conditions.push(`"email" = $${params.length + 1}`);
         params.push(filters.email);
     }
 
@@ -36,12 +36,10 @@ exports.findUser = async (filters) => {
         params.push(filters.excludeId);
     }
 
-    // Agregar WHERE si hay condiciones
     if (conditions.length > 0) {
         query += ` WHERE ` + conditions.join(" AND ");
     }
 
-    // Limitar a un solo resultado
     query += ` LIMIT 1`;
 
     const result = await db.query(query, params);
@@ -50,7 +48,7 @@ exports.findUser = async (filters) => {
 
 // Verificar si username existe
 exports.usernameExists = async (username, excludeId = null) => {
-    let query = `SELECT "idUsuario" FROM usuario WHERE username = $1`;
+    let query = `SELECT "idUsuario" FROM "usuario" WHERE "username" = $1`;
     let params = [username];
     if (excludeId) {
         query += ` AND "idUsuario" != $2`;
@@ -71,7 +69,7 @@ exports.emailExists = async (email, excludeId = null) => {
 
 // Obtener todas las claves de usuario existentes
 exports.getAllClavesUsuario = async () => {
-    const query = `SELECT "claveUsuario" FROM usuario WHERE "claveUsuario" IS NOT NULL`;
+    const query = `SELECT "claveUsuario" FROM "usuario" WHERE "claveUsuario" IS NOT NULL`;
     const result = await db.query(query);
     return result.rows.map(row => row.claveUsuario);
 };
@@ -80,8 +78,8 @@ exports.getAllClavesUsuario = async () => {
 exports.create = async (userData) => {
     const query = `
         INSERT INTO usuario (
-            nombre, "apellidoPaterno", "apellidoMaterno", "claveUsuario",
-            email, telefono, username, password, estatus,
+            "nombre", "apellidoPaterno", "apellidoMaterno", "claveUsuario",
+            "email", "telefono", "username", "password", "estatus",
             "idRol", "idTipoUsuario", "idProgramaEducativo", "tiempoCreacion"
         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, '1', $9, $10, $11, NOW())
         RETURNING "idUsuario"
@@ -107,8 +105,8 @@ exports.create = async (userData) => {
 exports.update = async (idUsuario, userData) => {
     const query = `
         UPDATE usuario 
-        SET nombre = $1, "apellidoPaterno" = $2, "apellidoMaterno" = $3,
-            email = $4, telefono = $5,
+        SET "nombre" = $1, "apellidoPaterno" = $2, "apellidoMaterno" = $3,
+            "email" = $4, "telefono" = $5,
             "idRol" = $6, "idTipoUsuario" = $7, "idProgramaEducativo" = $8,
             "tiempoActualizacion" = NOW()
         WHERE "idUsuario" = $9
@@ -132,8 +130,8 @@ exports.update = async (idUsuario, userData) => {
 // Cambiar estatus del usuario
 exports.changeStatus = async (idUsuario, estatus) => {
     const query = `
-        UPDATE usuario 
-        SET estatus = $1, "tiempoActualizacion" = NOW()
+        UPDATE "usuario" 
+        SET "estatus" = $1, "tiempoActualizacion" = NOW()
         WHERE "idUsuario" = $2
         RETURNING "idUsuario"
     `;

@@ -1,6 +1,5 @@
 const repo = require("../repositories/user.repository");
 const ResponseUser = require("../models/responses/response.user");
-const generateToken = require("../config/jwt");
 const { hashPassword, comparePassword } = require("../utils/bcrypt");
 const generateClaveUsuario = require("../utils/generarClave");
 

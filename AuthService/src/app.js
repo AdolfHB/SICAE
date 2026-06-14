@@ -8,11 +8,9 @@ const authRoutes = require("./routes/auth.routes");
 const app = express();
 
 // Middleware que permite al servidor entender datos en formato JSON
-// (por ejemplo, cuando envias datos desde Postman o frontend)
 app.use(express.json());
 
 app.use("/sicae/auth/api",authRoutes);
-
 
 // Exporta la aplicación para poderla usar en otro archivo (Por ejemplo, donde se inicia el servidor)
 module.exports = app;

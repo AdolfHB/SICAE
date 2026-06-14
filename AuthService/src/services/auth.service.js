@@ -18,7 +18,7 @@ exports.login = async (user) => {
     }
     
     if (data.estatus !== '1') {
-        return ResponseLogin.fail("El usuario está inactivo, contacte al administrador");
+        return ResponseLogin.fail("El usuario está inactivo, contacte con un administrador");
     }
     const validPassword = await comparePassword(user.password, data.password);
     if (!validPassword) {

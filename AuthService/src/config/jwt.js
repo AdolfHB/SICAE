@@ -10,7 +10,7 @@ const generateToken = (user) => {
     return jwt.sign(
         payload, //Datos incluidos en el token
         process.env.JWT_SECRET, // Generación de clave secreta
-        {expiresIn: "48h"}, // Tiempo de expiración
+        {expiresIn: "2h"}, // Tiempo de expiración
         //{algorithm:"HS512"} // Si no se lo ponemos, usara por defecto #HS256
     );
 };
