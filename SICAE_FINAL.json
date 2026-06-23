@@ -1,0 +1,720 @@
+{
+  "v": 12,
+  "name": "SICAE_FINAL",
+  "folders": [
+    {
+      "v": 12,
+      "name": "AuthService",
+      "folders": [
+        {
+          "v": 12,
+          "name": "Nativo",
+          "folders": [],
+          "requests": [
+            {
+              "v": "17",
+              "name": "test",
+              "method": "GET",
+              "endpoint": "http://localhost:5050/sicae/auth/api/test",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "login",
+              "method": "POST",
+              "endpoint": "http://localhost:5050/sicae/auth/api/login",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"username\":\"admin\",\n  \"password\":\"admin12345\"\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            }
+          ],
+          "auth": {
+            "authActive": true,
+            "authType": "inherit"
+          },
+          "headers": [],
+          "variables": [],
+          "description": null,
+          "preRequestScript": "",
+          "testScript": ""
+        },
+        {
+          "v": 12,
+          "name": "Docker",
+          "folders": [],
+          "requests": [
+            {
+              "v": "17",
+              "name": "test - Duplicar",
+              "method": "GET",
+              "endpoint": "http://localhost:5456/sicae/auth/api/test",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "login - Duplicar",
+              "method": "POST",
+              "endpoint": "http://localhost:5456/sicae/auth/api/login",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"username\":\"VanBiel\",\n  \"password\":\"123456\"\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            }
+          ],
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "headers": [],
+          "variables": [],
+          "description": null,
+          "preRequestScript": "",
+          "testScript": ""
+        },
+        {
+          "v": 12,
+          "name": "FINAL",
+          "folders": [],
+          "requests": [
+            {
+              "v": "17",
+              "name": "test/END",
+              "method": "GET",
+              "endpoint": "http://192.168.1.67:5456/sicae/auth/api/test",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "login/END",
+              "method": "POST",
+              "endpoint": "http://192.168.1.119:5456/sicae/auth/api/login",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"username\":\"admin\",\n  \"password\":\"admin12345\"\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            }
+          ],
+          "auth": {
+            "authActive": true,
+            "authType": "inherit"
+          },
+          "headers": [],
+          "variables": [],
+          "description": null,
+          "preRequestScript": "",
+          "testScript": ""
+        }
+      ],
+      "requests": [],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": 12,
+      "name": "UserService",
+      "folders": [
+        {
+          "v": 12,
+          "name": "Nativo",
+          "folders": [],
+          "requests": [
+            {
+              "v": "17",
+              "name": "profile-clave",
+              "method": "GET",
+              "endpoint": "http://localhost:5054/sicae/user/api/profile-clave/fei",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjE3MzE0MSwiZXhwIjoxNzgyMTgwMzQxfQ.wP7t1ViR2ggHwUnYKqvzfZd-xSpqx-lvUDo_X6PBF4c",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "profile-idUsuario",
+              "method": "GET",
+              "endpoint": "http://localhost:5054/sicae/user/api/profile-id/2",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjE3NDYyOCwiZXhwIjoxNzgyMTgxODI4fQ._bbtiXwkIrgN9KfwssFKKEFkFo2ShQSfnb9NKxdoihQ",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "register",
+              "method": "POST",
+              "endpoint": "http://localhost:5454/sicae/user/api/register",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MTM3NDI3MiwiZXhwIjoxNzgxNTQ3MDcyfQ.dIq97VTewgOsTRmsgNHTxK1KfiqUj7Ql-AfewaGc0Ww",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n    \"nombre\": \"Vi\",\n    \"apellidoPaterno\": \"Murrieta\",\n    \"apellidoMaterno\": \"Luna\",\n    \"username\": \"SDV\",\n    \"password\": \"abc123\",\n    \"email\": \"V@example.com\",\n    \"telefono\": \"5557654321\",\n    \"idRol\": 2,\n    \"idTipoUsuario\": 3,\n    \"idProgramaEducativo\": 3\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "edit",
+              "method": "PUT",
+              "endpoint": "http://localhost:5054/sicae/user/api/edit/2",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjE3MzE0MSwiZXhwIjoxNzgyMTgwMzQxfQ.wP7t1ViR2ggHwUnYKqvzfZd-xSpqx-lvUDo_X6PBF4c",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n    \"nombre\": \"Mario\",\n    \"apellidoPaterno\": \"García\",\n    \"apellidoMaterno\": \"Rodríguez\",\n    \"email\": \"mario.carmen@example.com\",\n    \"telefono\": \"5559876543\",\n    \"idRol\": 2,\n    \"idTipoUsuario\": 3,\n    \"idProgramaEducativo\": 4\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "change-status",
+              "method": "PUT",
+              "endpoint": "http://localhost:5054/sicae/user/api/change-status/2",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjE3NDYyOCwiZXhwIjoxNzgyMTgxODI4fQ._bbtiXwkIrgN9KfwssFKKEFkFo2ShQSfnb9NKxdoihQ",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n    \"estatus\": \"1\"\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            }
+          ],
+          "auth": {
+            "authActive": true,
+            "authType": "inherit"
+          },
+          "headers": [],
+          "variables": [],
+          "description": null,
+          "preRequestScript": "",
+          "testScript": ""
+        },
+        {
+          "v": 12,
+          "name": "Docker",
+          "folders": [],
+          "requests": [
+            {
+              "v": "17",
+              "name": "profile-idUsuario - Duplicar",
+              "method": "GET",
+              "endpoint": "http://localhost:5457/sicae/user/api/profile-id/2",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MTM4NDA5NywiZXhwIjoxNzgxNTU2ODk3fQ.HGK-oEw9D00Q7kZtRS789xx99Z9VOccJQ2m-zzrfHo4",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "register - Duplicar",
+              "method": "POST",
+              "endpoint": "http://localhost:5457/sicae/user/api/register",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MTM4NDA5NywiZXhwIjoxNzgxNTU2ODk3fQ.HGK-oEw9D00Q7kZtRS789xx99Z9VOccJQ2m-zzrfHo4",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n    \"nombre\": \"Ivan\",\n    \"apellidoPaterno\": \"Moreno\",\n    \"apellidoMaterno\": \"Castaneda\",\n    \"username\": \"VanBiel\",\n    \"password\": \"123456\",\n    \"email\": \"IVanBiel@example.com\",\n    \"telefono\": \"2288112233\",\n    \"idRol\": 2,\n    \"idTipoUsuario\": 3,\n    \"idProgramaEducativo\": 3\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            }
+          ],
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "headers": [],
+          "variables": [],
+          "description": null,
+          "preRequestScript": "",
+          "testScript": ""
+        },
+        {
+          "v": 12,
+          "name": "FINAL",
+          "folders": [],
+          "requests": [
+            {
+              "v": "17",
+              "name": "register/END",
+              "method": "POST",
+              "endpoint": "http://192.168.1.119:5457/sicae/user/api/register",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjE3NTYxMCwiZXhwIjoxNzgyMTgyODEwfQ.R2CwyZLon4-NAN74etHLlrEcMtVy6JoP3LVYAy6D4j4",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n    \"nombre\": \"Adolfo\",\n    \"apellidoPaterno\": \"Hernandez\",\n    \"apellidoMaterno\": \"Barrios\",\n    \"username\": \"Adolf\",\n    \"password\": \"545100\",\n    \"email\": \"ufo@example.com\",\n    \"telefono\": \"2288559966\",\n    \"idRol\": 2,\n    \"idTipoUsuario\": 3,\n    \"idProgramaEducativo\": 4\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "edit/END",
+              "method": "PUT",
+              "endpoint": "http://192.168.1.119:5457/sicae/user/api/edit/3",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjE3NTYxMCwiZXhwIjoxNzgyMTgyODEwfQ.R2CwyZLon4-NAN74etHLlrEcMtVy6JoP3LVYAy6D4j4",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n    \"nombre\": \"Mario\",\n    \"apellidoPaterno\": \"García\",\n    \"apellidoMaterno\": \"Rodríguez\",\n    \"email\": \"mario.carmen@example.com\",\n    \"telefono\": \"5559876543\",\n    \"idRol\": 2,\n    \"idTipoUsuario\": 3,\n    \"idProgramaEducativo\": 4\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "profile-clave/END",
+              "method": "GET",
+              "endpoint": "http://192.168.1.119:5457/sicae/user/api/profile-clave/fei",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjE3NTYxMCwiZXhwIjoxNzgyMTgyODEwfQ.R2CwyZLon4-NAN74etHLlrEcMtVy6JoP3LVYAy6D4j4",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "profile-idUsuario /END",
+              "method": "GET",
+              "endpoint": "http://192.168.1.119:5457/sicae/user/api/profile-id/3",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjE3NTYxMCwiZXhwIjoxNzgyMTgyODEwfQ.R2CwyZLon4-NAN74etHLlrEcMtVy6JoP3LVYAy6D4j4",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            },
+            {
+              "v": "17",
+              "name": "change-status/END",
+              "method": "PUT",
+              "endpoint": "http://192.168.1.119:5457/sicae/user/api/change-status/2",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "bearer",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjcsInVzZXJuYW1lIjoiQWRvbGYiLCJpZFJvbCI6Miwicm9sIjoiaW52aXRhZG8iLCJpYXQiOjE3ODIxODE4OTAsImV4cCI6MTc4MjE4OTA5MH0.Cu3WqBOZ5umjKHiduZUhKRP4w8yY2POj6gtuuwfGx3s",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "application/json",
+                "body": "{\n    \"estatus\": \"0\"\n}"
+              },
+              "requestVariables": [],
+              "responses": {},
+              "description": null
+            }
+          ],
+          "auth": {
+            "authActive": true,
+            "authType": "inherit"
+          },
+          "headers": [],
+          "variables": [],
+          "description": null,
+          "preRequestScript": "",
+          "testScript": ""
+        }
+      ],
+      "requests": [],
+      "auth": {
+        "authActive": true,
+        "authType": "inherit"
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": 12,
+      "name": "ParkingService",
+      "folders": [],
+      "requests": [
+        {
+          "v": "17",
+          "name": "Consultar_espacios",
+          "method": "GET",
+          "endpoint": "http://10.83.104.101:8081/api/parking/espacios",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjA5MjUxOSwiZXhwIjoxNzgyMDk5NzE5fQ.7qdHG14gMG5Cn02NOcL7_rx7tMcseL4LKKcYqGaYESw",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "name": "Registrar_movimiento",
+          "method": "POST",
+          "endpoint": "http://10.83.104.101:8081/api/parking/entrada",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjA5MjUxOSwiZXhwIjoxNzgyMDk5NzE5fQ.7qdHG14gMG5Cn02NOcL7_rx7tMcseL4LKKcYqGaYESw",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n    \"claveUsuario\": \"fei\",\n    \"placa\": \"SXD0S4\",\n    \"tarifaHora\": 20,\n    \"idEspacio\": 1\n}"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "name": "Registrar_salida",
+          "method": "PUT",
+          "endpoint": "http://10.83.104.101:8081/api/parking/salida",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MjA5MjUxOSwiZXhwIjoxNzgyMDk5NzE5fQ.7qdHG14gMG5Cn02NOcL7_rx7tMcseL4LKKcYqGaYESw",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n    \"claveUsuario\": \"fei\",\n    \"placa\": \"SXD0S4\"\n}"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": 12,
+      "name": "vehicleService",
+      "folders": [],
+      "requests": [
+        {
+          "v": "17",
+          "name": "search",
+          "method": "GET",
+          "endpoint": "http://localhost:9090/VehicleService/api/vehiculos/usuario/vehiculos",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwiaWF0IjoxNzgyMTQ0NTk5LCJleHAiOjE3ODIxNDgxOTl9.J7r1n78VrYU7wkFYzdyBVxRkFOp7OYQXqSvwaGGNlkY",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "name": "register",
+          "method": "POST",
+          "endpoint": "http://localhost:9090/VehicleService/api/vehiculos/registrar",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwiaWF0IjoxNzgxMzI0MzI0LCJleHAiOjE3ODE0OTcxMjR9.qwjB5fVaDrD-IEqo84of89U080GMwfsOv6Lb160YYqc",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"idModelo\": 2,\n  \"placa\": \"SXD004\",\n  \"color\": \"Rojo\",\n  \"anio\": 2022,\n  \"descripcion\": \"Vehiculo personal\"\n}"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "name": "edit",
+          "method": "PUT",
+          "endpoint": "http://localhost:9090/VehicleService/api/vehiculos/editar/1",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwicm9sIjoiYWRtaW5pc3RyYWRvciIsImlhdCI6MTc4MTM3NDQzOSwiZXhwIjoxNzgxNTQ3MjM5fQ.rs_V8qPEUVIZxNu5r9sG5Ynz9Sqi9KW2n7Ox9bZ0UQM",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"idModelo\": 3,\n  \"placa\": \"XYF9876\",\n  \"color\": \"Rojo\",\n  \"anio\": 2021,\n  \"descripcion\": \"Vehiculo actualizado prueba1\"\n}"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "name": "status",
+          "method": "PUT",
+          "endpoint": "http://localhost:9090/VehicleService/api/vehiculos/estatus/1",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpZFJvbCI6MSwiaWF0IjoxNzgyMTQ0NTk5LCJleHAiOjE3ODIxNDgxOTl9.J7r1n78VrYU7wkFYzdyBVxRkFOp7OYQXqSvwaGGNlkY",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"estatus\": 1\n}"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    }
+  ],
+  "requests": [],
+  "auth": {
+    "authActive": true,
+    "authType": "none"
+  },
+  "headers": [],
+  "variables": [],
+  "description": "",
+  "preRequestScript": "",
+  "testScript": ""
+}
