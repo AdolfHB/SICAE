@@ -46,7 +46,8 @@ exports.getProfileByClave = async (req, res) => {
 exports.changeStatus = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await service.changeStatus(id, req.user);
+        const { estatus } = req.body; 
+        const result = await service.changeStatus(id, estatus, req.user);
         res.status(result.error ? 400 : 200).json(result);
     } catch (err) {
        res.status(500).json({ error: true, message: "Error al cambiar el estatus" });

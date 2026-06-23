@@ -3,7 +3,6 @@ const ResponseUser = require("../models/responses/response.user");
 const { hashPassword, comparePassword } = require("../utils/bcrypt");
 const generateClaveUsuario = require("../utils/generarClave");
 
-
 const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
@@ -27,7 +26,7 @@ exports.register = async (userData, authenticatedUser) => {
         }
 
         const required = ['nombre', 'apellidoPaterno', 'username', 'password', 'email', 
-            'idRol', 'idTipoUsuario', 'idProgramaEducativo'];
+            'telefono', 'idRol', 'idTipoUsuario', 'idProgramaEducativo'];
         const missing = validateRequiredFields(userData, required);
         if (missing.length > 0) {
             return ResponseUser.fail(`Datos faltantes: ${missing.join(', ')}`);
@@ -73,7 +72,7 @@ exports.register = async (userData, authenticatedUser) => {
 
         if (result && result.idUsuario) {
             const createdUser = await repo.findUser({ idUsuario: result.idUsuario });
-            return ResponseUser.success(createdUser, "Usuario registrado exitosamente");
+            return ResponseUser.success(`El usuario ${createdUser.nombre} se ha registrado exitosamente`);
         }
         return ResponseUser.fail("Error al registrar usuario");
 
@@ -97,7 +96,8 @@ exports.update = async (idUsuario, userData, authenticatedUser) => {
             return ResponseUser.fail("No tienes permiso para editar este usuario");
         }
 
-        const required = ['nombre', 'apellidoPaterno', 'email', 'idRol', 'idTipoUsuario', 'idProgramaEducativo'];
+        const required = ['nombre', 'apellidoPaterno', 'email', 'telefono',
+            'idRol', 'idTipoUsuario', 'idProgramaEducativo'];
         const missing = validateRequiredFields(userData, required);
         if (missing.length > 0) {
             return ResponseUser.fail(`Datos faltantes: ${missing.join(', ')}`);
@@ -116,7 +116,7 @@ exports.update = async (idUsuario, userData, authenticatedUser) => {
 
         if (result) {
             const updatedUser = await repo.findUser({ idUsuario });
-            return ResponseUser.success(updatedUser, "Usuario actualizado exitosamente");
+            return ResponseUser.success(`El usuario ${updatedUser.nombre} se ha editado exitosamente`);
         }
         return ResponseUser.fail("Error al actualizar usuario");
 
@@ -133,10 +133,24 @@ exports.getProfile = async (idUsuario, authenticatedUser) => {
             return ResponseUser.fail("No tienes permiso para ver este perfil");
         }
 
-         const user = await repo.findUser({ idUsuario });
+        const user = await repo.findUser({ idUsuario });
         if (!user) return ResponseUser.fail("Usuario no encontrado");
+        
+        const profileInfo = {
+            Rol: user.rol,
+            nombreCompleto: `${user.nombre} ${user.apellidoPaterno} ${user.apellidoMaterno || ''}`.trim(),
+            tipoUsuario: user.tipoUsuario,
+            programaEducativo: user.programaEducativo,
+            usuario: user.username,
+            correo: user.email,
+            telefono: user.telefono || 'No registrado',
+            estatus: user.estatus === '1' ? 'Activo' : 'Inactivo',
+            claveUsuario: user.claveUsuario,
+            tiempoCreacion: user.tiempoCreacion,
+            tiempoActualizacion: user.tiempoActualizacion || 'Sin actualizar'
+        };
 
-        return ResponseUser.success(user, "Perfil obtenido exitosamente");
+        return ResponseUser.success(profileInfo, "Perfil obtenido exitosamente");
 
     } catch (error) {
         console.error("Error en getProfile:", error);
@@ -146,7 +160,7 @@ exports.getProfile = async (idUsuario, authenticatedUser) => {
 
 //  Ver perfil por claveUsuario
 exports.getProfileByClave = async (claveUsuario) => {
-    try {
+    try {    
         if (!claveUsuario) {
             return ResponseUser.fail("La clave de usuario es requerida");
         }
@@ -156,19 +170,21 @@ exports.getProfileByClave = async (claveUsuario) => {
             return ResponseUser.fail("Usuario no encontrado con esa clave");
         }
 
-        // Verificar que el usuario esté activo
-        if (user.estatus !== '1') {
-            return ResponseUser.fail("El usuario está inactivo");
-        }
-
-        return ResponseUser.success({
-            idUsuario: user.idUsuario,
+        const profileInfo = {
+            Rol: user.rol,
+            nombreCompleto: `${user.nombre} ${user.apellidoPaterno} ${user.apellidoMaterno || ''}`.trim(),
+            tipoUsuario: user.tipoUsuario,
+            programaEducativo: user.programaEducativo,
+            usuario: user.username,
+            correo: user.email,
+            telefono: user.telefono || 'No registrado',
+            estatus: user.estatus === '1' ? 'Activo' : 'Inactivo',
             claveUsuario: user.claveUsuario,
-            nombreCompleto: `${user.nombre} ${user.apellidoPaterno}`,
-            estatus: user.estatus,
-            idRol: user.idRol,
-            rol: user.rol
-        }, "Usuario encontrado");
+            tiempoCreacion: user.tiempoCreacion,
+            tiempoActualizacion: user.tiempoActualizacion || 'Sin actualizar'
+        };
+
+        return ResponseUser.success(profileInfo, "Perfil obtenido exitosamente");
 
     } catch (error) {
         console.error("Error en getProfileByClave:", error);
@@ -177,26 +193,38 @@ exports.getProfileByClave = async (claveUsuario) => {
 };
 
 // Cambiar estatus 
-exports.changeStatus = async (idUsuario, authenticatedUser) => {
+exports.changeStatus = async (idUsuario, newStatus, authenticatedUser) => {
     try {
-        if (authenticatedUser.rol !== "administrador") {
-            return ResponseUser.fail("Solo los administradores pueden cambiar el estatus");
-        }
-
         const user = await repo.findUser({ idUsuario });
-        if (!user) return ResponseUser.fail("Usuario no encontrado");
+        const isAdmin = authenticatedUser.idRol === 1;  
+        const isSelf = parseInt(authenticatedUser.idUsuario) === parseInt(idUsuario);
 
-        if (parseInt(idUsuario) === authenticatedUser.idUsuario) {
-            return ResponseUser.fail("No puedes cambiar tu propio estatus");
+        if (!user) return ResponseUser.fail("Usuario no encontrado"); 
+
+        if (newStatus !== '0' && newStatus !== '1') {
+            return ResponseUser.fail("El estatus debe ser '0' (inactivo) o '1' (activo)");
         }
 
-        const newStatus = user.estatus === '1' ? '0' : '1';
+        if (newStatus === '1' && !isAdmin) {
+            return ResponseUser.fail("Solo los administradores pueden activar usuarios");
+        }
+
+        if (newStatus === '0' && !isSelf && !isAdmin) {
+            return ResponseUser.fail("No tienes permiso para desactivar a otro usuario");
+        }
+        
+        if (user.estatus === newStatus) {
+            const statusText = newStatus === '1' ? "activo" : "inactivo";
+            return ResponseUser.fail(`El usuario ya está ${statusText}`);
+        }
+
         const result = await repo.changeStatus(idUsuario, newStatus);
 
         if (result) {
             const statusText = newStatus === '1' ? "activado" : "desactivado";
-            return ResponseUser.success({ idUsuario, estatus: newStatus }, `Usuario ${statusText} exitosamente`);
+            return ResponseUser.success(`El usuario ha sido ${statusText} exitosamente`);
         }
+
         return ResponseUser.fail("Error al cambiar estatus");
 
     } catch (error) {

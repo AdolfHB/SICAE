@@ -1,8 +1,10 @@
 // Se utiliza para verificar y decodificar tokens JWT
 const jwt = require("jsonwebtoken");
+// Para poder validar el estado
+const repo = require("../repositories/user.repository");
 
 // Middleware para validar el token JWT
-const validateToken = (req, res, next) => {
+const validateToken = async (req, res, next) => {
     // Obtiene el encabezado Autorization de la petición
     const authHeader = req.headers.authorization;
 
@@ -26,6 +28,16 @@ const validateToken = (req, res, next) => {
         //Guarda la información decodificada del usuario dentro del objeto request
         req.user = decoded;
 
+        //Verifica que el usuario está activo (para cuando se desactive el solo)
+        const user = await repo.findUser({ idUsuario: decoded.idUsuario });
+
+        if (user.estatus !== '1') {
+            return res.status(401).json({
+                error: true,
+                message: "Tu cuenta está desactivada. Contacta a un administrador.",
+            });
+        }
+
         // Continua con el siguiente middleware o controlador
         next();
     } catch (error){
@@ -37,22 +49,5 @@ const validateToken = (req, res, next) => {
     }
 };
 
-const validateAdmin = (req, res, next) => {
-    if (!req.user) {
-        return res.status(401).json({
-            error: true,
-            message: "Usuario no autenticado",
-        });
-    }
-    
-    if (req.user.rol !== "administrador") {
-        return res.status(403).json({
-            error: true,
-            message: "Acceso denegado. Se requieren permisos de administrador",
-        });
-    }
-    
-    next();
-};
 //Exporta el middelware para usarlo en rutas protegidas
-module.exports =  { validateToken, validateAdmin };
+module.exports =  validateToken;

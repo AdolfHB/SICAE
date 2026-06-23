@@ -6,7 +6,8 @@ const router = express.Router();
 
 // Importa el controlador donde están las funciones que manejan la lógica
 const controller = require("../controllers/user.controller");
-const { validateToken, validateAdmin } = require("../middlewares/user.middleware");
+const validateToken = require("../middlewares/user.auth");
+const validateAdmin = require("../middlewares/user.admin");
 
 // Registrar usuario (solo admin)
 router.post("/register", validateToken, validateAdmin, controller.register);
@@ -18,7 +19,7 @@ router.put("/edit/:id", validateToken, controller.update);
 router.get("/profile-id/:id", validateToken, controller.getProfile);
 router.get("/profile-clave/:claveUsuario", validateToken, controller.getProfileByClave);
 
-// Cambiar estatus (solo admin)
-router.patch("/edit/:id/status", validateToken, validateAdmin, controller.changeStatus);
+// Cambiar estatus (mismo usuario o admin)
+router.put("/change-status/:id", validateToken, controller.changeStatus);
 
 module.exports = router;

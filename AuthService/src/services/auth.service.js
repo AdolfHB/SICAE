@@ -13,6 +13,7 @@ exports.login = async (user) => {
     }
 
     const data = await repo.login(user);
+    
     if(!data){
         return  ResponseLogin.fail("El usuario no existe, verifíque las credenciales");
     }
@@ -25,21 +26,13 @@ exports.login = async (user) => {
         return ResponseLogin.fail("Contraseña Incorrecta")
     }
 
-    const tokenPayload = {
-        idUsuario: data.idUsuario,
-        username: data.username,
-        idRol: data.idRol,
-        rol: data.rol,  
-        idTipoUsuario: data.idTipoUsuario,
-        tipoUsuario: data.tipoUsuario
-    };
     const token = generateToken(data)
     return ResponseLogin.success({
         idUsuario: data.idUsuario,
         idRol: data.idRol,
         rol: data.rol,
-        usuario: data.username,
-        nombreCompleto: `${data.nombre} ${data.apellidoPaterno} ${data.apellidoMaterno || ''}`.trim(),
+        usuario: data.username,  
+        nombreCompleto: `${data.nombre} ${data.apellidoPaterno} ${data.apellidoMaterno || ''}`.trim(),      
         idTipoUsuario: data.idTipoUsuario,
         tipoUsuario: data.tipoUsuario
     }, token);
